@@ -5,7 +5,7 @@ NSW Health does not provide an API for accessing current Covid cases,
 vaccinations and related information. This is a screen scaper to
 facilitate programmatic access.
 
-Look how easy it is to use:
+Look how easy it is to use::
 
     import logging
     import asyncio
