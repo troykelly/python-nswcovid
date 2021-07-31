@@ -10,7 +10,7 @@ import requests
 
 _LOGGER = logging.getLogger(__name__)
 
-_REFRENCE = "https://github.com/troykelly/python-nswcovid"
+_REFRENCE = "https://github.com/troykelly/homeassistant-au-nsw-covid"
 """Used to identify this to Open Street Map"""
 
 _USER_AGENT = f"Mozilla/5.0 (compatible; NSWCovid; +{_REFRENCE})"

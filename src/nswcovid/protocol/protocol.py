@@ -20,12 +20,6 @@ from ..exceptions import (
 _logger = logging.getLogger(__name__)
 logging.getLogger("backoff").addHandler(logging.StreamHandler())
 
-_REFRENCE = "https://github.com/troykelly/python-nswcovid"
-"""Used to identify this to NSW Health"""
-
-_USER_AGENT = f"Mozilla/5.0 (compatible; NSWCovid; +{_REFRENCE})"
-"""The User Agent for NSW Health calls"""
-
 
 def fatal_code(e):
     return 400 <= e.response.status_code < 500
@@ -47,7 +41,6 @@ class Protocol(object):
         super().__init__()
 
         self.__session = requests.Session()
-        self.__session.headers = {"User-Agent": _USER_AGENT, "Referer": _REFRENCE}
 
         self.__loop = loop if loop else asyncio.get_event_loop()
 
