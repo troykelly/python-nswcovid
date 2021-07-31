@@ -415,7 +415,7 @@ class StatisticHandler(object):
         value = None
 
         if hasattr(statistic, "selector") and statistic.selector is not None:
-            soup = BeautifulSoup(body, features="lxml")
+            soup = BeautifulSoup(markup=body, features="lxml")
             reference = soup.select_one(statistic.selector)
 
             if not reference:
@@ -547,7 +547,6 @@ class Statistic(object):
     async def refresh(self, event_receiver=None):
         if not self.__id:
             return
-        _logger.debug("Updating statistic %s value", self.__id)
         await self.__handler.details(self.__id)
         if self.changed and event_receiver is not None:
             try:
@@ -593,6 +592,7 @@ class Statistic(object):
             self.__changed = self.__check_changed()
         except AttributeError:
             pass
+        _logger.debug("Updating statistic %s: %s", self.__id, self.status)
 
     @property
     def attribution(self):

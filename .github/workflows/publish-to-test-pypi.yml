@@ -5,7 +5,7 @@ jobs:
     build-n-publish:
       name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
       runs-on: ubuntu-18.04
-      
+
       steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
@@ -18,6 +18,11 @@ jobs:
           pip install
           pyscaffold[all]
           --user
+      - name: Tests
+        run: >-
+          python
+          setup.py
+          test
       - name: Build a binary wheel and a source tarball
         run: >-
           python
