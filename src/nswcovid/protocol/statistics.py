@@ -22,6 +22,7 @@ DATA_SOURCES = {
         "name": "Published",
         "type": "nswcoviddate",
         "unit": "date",
+        "iconId": "mdi:calendar-range",
         "selector": "#maincontent > nav > h1",
         "regex": "\d+[ap]m\s+\d+\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+(?:20)?\d\d",
     },
@@ -31,6 +32,7 @@ DATA_SOURCES = {
         "name": "Locally Active",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(1) > span",
     },
     "interstate_active": {
@@ -39,6 +41,7 @@ DATA_SOURCES = {
         "name": "Interstate Active",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(2) > span",
     },
     "overseas_active": {
@@ -47,6 +50,7 @@ DATA_SOURCES = {
         "name": "Overseas Active",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(3) > span",
     },
     "last_24_hours_known": {
@@ -55,6 +59,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Known Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(1) > span.number",
     },
     "last_24_hours_unknown": {
@@ -63,6 +68,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Unknown Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(1) > span.number",
     },
     "last_24_hours_interstate": {
@@ -71,6 +77,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Interstate Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(1) > span.number",
     },
     "last_24_hours_overseas": {
@@ -79,6 +86,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Overseas Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(1) > span.number",
     },
     "last_24_hours_total": {
@@ -87,6 +95,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Total",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(1) > span.number",
     },
     "last_24_hours_tests": {
@@ -95,6 +104,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Tests",
         "type": "integer",
         "unit": "test",
+        "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(1) > span.number",
     },
     "this_week_known": {
@@ -103,6 +113,7 @@ DATA_SOURCES = {
         "name": "This Week Known Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(2) > span.number",
     },
     "this_week_unknown": {
@@ -111,6 +122,7 @@ DATA_SOURCES = {
         "name": "This Week Unknown Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(2) > span.number",
     },
     "this_week_interstate": {
@@ -119,6 +131,7 @@ DATA_SOURCES = {
         "name": "This Week Interstate Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(2) > span.number",
     },
     "this_week_overseas": {
@@ -127,6 +140,7 @@ DATA_SOURCES = {
         "name": "This Week Overseas Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(2) > span.number",
     },
     "this_week_total": {
@@ -135,6 +149,7 @@ DATA_SOURCES = {
         "name": "This Week Total",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(2) > span.number",
     },
     "this_week_tests": {
@@ -143,6 +158,7 @@ DATA_SOURCES = {
         "name": "This Week Tests",
         "type": "integer",
         "unit": "test",
+        "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(2) > span.number",
     },
     "last_week_known": {
@@ -151,6 +167,7 @@ DATA_SOURCES = {
         "name": "Last Week Known Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(3) > span.number",
     },
     "last_week_unknown": {
@@ -159,6 +176,7 @@ DATA_SOURCES = {
         "name": "Last Week Unknown Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(3) > span.number",
     },
     "last_week_interstate": {
@@ -167,6 +185,7 @@ DATA_SOURCES = {
         "name": "Last Week Interstate Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(3) > span.number",
     },
     "last_week_overseas": {
@@ -175,6 +194,7 @@ DATA_SOURCES = {
         "name": "Last Week Overseas Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(3) > span.number",
     },
     "last_week_total": {
@@ -183,6 +203,7 @@ DATA_SOURCES = {
         "name": "Last Week Total",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(3) > span.number",
     },
     "last_week_tests": {
@@ -191,6 +212,7 @@ DATA_SOURCES = {
         "name": "Last Week Tests",
         "type": "integer",
         "unit": "test",
+        "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(3) > span.number",
     },
     "this_year_known": {
@@ -199,6 +221,7 @@ DATA_SOURCES = {
         "name": "This Year Known Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(4) > span.number",
     },
     "this_year_unknown": {
@@ -207,6 +230,7 @@ DATA_SOURCES = {
         "name": "This Year Unknown Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(4) > span.number",
     },
     "this_year_interstate": {
@@ -215,6 +239,7 @@ DATA_SOURCES = {
         "name": "This Year Interstate Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(4) > span.number",
     },
     "this_year_overseas": {
@@ -223,6 +248,7 @@ DATA_SOURCES = {
         "name": "This Year Overseas Source",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(4) > span.number",
     },
     "this_year_total": {
@@ -231,6 +257,7 @@ DATA_SOURCES = {
         "name": "This Year Total",
         "type": "integer",
         "unit": "case",
+        "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(4) > span.number",
     },
     "this_year_tests": {
@@ -239,6 +266,7 @@ DATA_SOURCES = {
         "name": "This Year Tests",
         "type": "integer",
         "unit": "test",
+        "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(4) > span.number",
     },
     "last_24_hours_first_dose": {
@@ -247,6 +275,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours First Dose Vaccine",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)",
     },
     "last_24_hours_second_dose": {
@@ -255,6 +284,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Second Dose Vaccine",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td:nth-child(2)",
     },
     "last_24_hours_total_dose": {
@@ -263,6 +293,7 @@ DATA_SOURCES = {
         "name": "Last 24 Hours Vaccine Total",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td:nth-child(2)",
     },
     "total_first_dose": {
@@ -271,6 +302,7 @@ DATA_SOURCES = {
         "name": "Total First Dose Vaccine",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(2) > td:nth-child(3)",
     },
     "total_second_dose": {
@@ -279,6 +311,7 @@ DATA_SOURCES = {
         "name": "Total Second Dose Vaccine",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td:nth-child(3)",
     },
     "total_total_dose": {
@@ -287,6 +320,7 @@ DATA_SOURCES = {
         "name": "Total Vaccine Doses",
         "type": "integer",
         "unit": "dose",
+        "iconId": "mdi:needle",
         "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td:nth-child(3)",
     },
 }
