@@ -195,6 +195,9 @@ class Protocol(object):
                 response=err.response,
             )
 
+        if not body:
+            return None
+
         soup = None
         dom = None
         try:
