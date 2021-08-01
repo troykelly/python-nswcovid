@@ -10,6 +10,8 @@ import json
 import hashlib
 import requests
 import backoff
+from bs4 import BeautifulSoup
+from lxml import etree
 
 
 from ..exceptions import (
@@ -193,13 +195,26 @@ class Protocol(object):
                 response=err.response,
             )
 
+        soup = None
+        dom = None
+        try:
+            soup = BeautifulSoup(body, "lxml")
+            for data in soup(["style", "script"]):
+                # Remove tags
+                data.decompose()
+            dom = etree.HTML(str(soup))
+        except Exception as err:
+            pass
+
         if method == "GET":
-            self.__cache(url=url, query_string=params, body=body)
+            self.__cache(url=url, query_string=params, body=body, soup=soup, dom=dom)
 
         return {
             "retrieved": datetime.now(),
             "expires": datetime.now() + timedelta(milliseconds=self.__expiryms),
             "body": body,
+            "soup": soup,
+            "dom": dom,
         }
 
     async def api_get(self, path=None, data=None, host=None):
@@ -244,7 +259,7 @@ class Protocol(object):
             "PUT", path=path, data=data, query_string=query_string, host=host
         )
 
-    def __cache(self, url=None, query_string=None, body=None):
+    def __cache(self, url=None, query_string=None, body=None, soup=None, dom=None):
         """Handle caching of GET queries
 
         Attributes:
@@ -270,6 +285,8 @@ class Protocol(object):
                 "retrieved": datetime.now(),
                 "expires": datetime.now() + timedelta(milliseconds=self.__expiryms),
                 "body": body,
+                "soup": soup,
+                "dom": dom,
             }
             return self.__cache_data[cache_key]
 

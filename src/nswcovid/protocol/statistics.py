@@ -7,9 +7,7 @@ import logging
 from datetime import datetime, timedelta
 import asyncio
 import re
-import json
 import pytz
-from bs4 import BeautifulSoup
 
 _logger = logging.getLogger(__name__)
 
@@ -24,7 +22,7 @@ DATA_SOURCES = {
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "selector": "#maincontent > nav > h1",
-        "regex": "\d+[ap]m\s+\d+\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+(?:20)?\d\d",
+        "regex": "\\d+[ap]m\\s+\\d+\\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\\s+(?:20)?\\d\\d",
     },
     "locally_active": {
         "host": None,
@@ -276,7 +274,7 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(2) > td:nth-child(2)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[2]/td[2]/text()',
     },
     "last_24_hours_second_dose": {
         "host": None,
@@ -285,7 +283,7 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td:nth-child(2)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[3]/td[2]/text()',
     },
     "last_24_hours_total_dose": {
         "host": None,
@@ -294,7 +292,7 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td:nth-child(2)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[4]/td[2]/text()',
     },
     "total_first_dose": {
         "host": None,
@@ -303,7 +301,7 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(2) > td:nth-child(3)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[2]/td[3]/text()',
     },
     "total_second_dose": {
         "host": None,
@@ -312,7 +310,7 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(3) > td:nth-child(3)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[3]/td[3]/text()',
     },
     "total_total_dose": {
         "host": None,
@@ -321,9 +319,11 @@ DATA_SOURCES = {
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(3) > div > table > tbody > tr:nth-child(4) > td:nth-child(3)",
+        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[4]/td[3]/text()',
     },
 }
+# ENABLED_DATA_SOURCES = ["published", "total_first_dose"]
+ENABLED_DATA_SOURCES = list()
 
 
 class StatisticHandler(object):
@@ -357,9 +357,15 @@ class StatisticHandler(object):
             for statistic_reference in all_statistics:
                 if "id" in statistic_reference:
                     statistic_id = statistic_reference["id"]
-                    self.__statistics[statistic_id] = Statistic(
-                        handler=self, id=statistic_id, data=statistic_reference
-                    )
+                    if len(ENABLED_DATA_SOURCES) > 0:
+                        if statistic_id in ENABLED_DATA_SOURCES:
+                            self.__statistics[statistic_id] = Statistic(
+                                handler=self, id=statistic_id, data=statistic_reference
+                            )
+                    else:
+                        self.__statistics[statistic_id] = Statistic(
+                            handler=self, id=statistic_id, data=statistic_reference
+                        )
             page += 1
             all_statistics = await self.__listall(limit=limit, page=page)
         statistic_ids = self.__statistics.keys()
@@ -414,14 +420,34 @@ class StatisticHandler(object):
 
         value = None
 
-        if hasattr(statistic, "selector") and statistic.selector is not None:
-            soup = BeautifulSoup(markup=body, features="lxml")
-            reference = soup.select_one(statistic.selector)
+        if (
+            hasattr(statistic, "selector")
+            and statistic.selector is not None
+            and get["soup"] is not None
+        ):
+            reference = get["soup"].select_one(statistic.selector)
+            _logger.debug("%s :: %s", statistic.selector, reference)
 
             if not reference:
                 return statistic
 
             value = reference.string
+
+            if not value:
+                return statistic
+
+        if (
+            hasattr(statistic, "xpath")
+            and statistic.xpath is not None
+            and get["dom"] is not None
+        ):
+            reference = get["dom"].xpath(statistic.xpath)
+            _logger.debug("%s :: %s", statistic.xpath, reference)
+
+            if not reference and reference[0]:
+                return statistic
+
+            value = reference[0]
 
             if not value:
                 return statistic
@@ -522,6 +548,8 @@ class Statistic(object):
                 self.__unit = data["unit"]
             if "selector" in data:
                 self.__selector = data["selector"]
+            if "xpath" in data:
+                self.__xpath = data["xpath"]
             if "regex" in data:
                 self.__regex = data["regex"]
             if "typeId" in data:
@@ -683,6 +711,13 @@ class Statistic(object):
     def selector(self):
         try:
             return self.__selector
+        except AttributeError:
+            return None
+
+    @property
+    def xpath(self):
+        try:
+            return self.__xpath
         except AttributeError:
             return None
 
