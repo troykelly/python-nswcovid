@@ -426,7 +426,6 @@ class StatisticHandler(object):
             and get["soup"] is not None
         ):
             reference = get["soup"].select_one(statistic.selector)
-            _logger.debug("%s :: %s", statistic.selector, reference)
 
             if not reference:
                 return statistic
@@ -442,7 +441,6 @@ class StatisticHandler(object):
             and get["dom"] is not None
         ):
             reference = get["dom"].xpath(statistic.xpath)
-            _logger.debug("%s :: %s", statistic.xpath, reference)
 
             if not reference and reference[0]:
                 return statistic
@@ -655,6 +653,13 @@ class Statistic(object):
     def name(self):
         try:
             return self.__name
+        except AttributeError:
+            return None
+
+    @property
+    def published(self):
+        try:
+            return self.__handler.statistics["published"].state
         except AttributeError:
             return None
 
