@@ -12,7 +12,7 @@ import pytz
 _logger = logging.getLogger(__name__)
 
 TZ = pytz.timezone("Australia/Sydney")
-ATTRIBUTION = "Health Protection NSW https://www.health.nsw.gov.au/Infectious/covid-19/Pages/stats-nsw.aspx#"
+ATTRIBUTION = "© State of New South Wales NSW Ministry of Health. For current information go to www.health.nsw.gov.au"
 DATA_SOURCES = {
     "published": {
         "host": None,
