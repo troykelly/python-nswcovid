@@ -24,7 +24,9 @@ logging.getLogger("backoff").addHandler(logging.StreamHandler())
 
 
 def fatal_code(e):
-    return 400 <= e.response.status_code < 500
+    if e and e.response and e.response.status_code:
+        return 400 <= e.response.status_code < 500
+    return False
 
 
 class Protocol(object):
@@ -86,12 +88,12 @@ class Protocol(object):
                 method, url, params=params, json=json_data, headers=headers
             )
 
-        response = None
         try:
             response = do_request()
         except Exception as err:
             _logger.error("No response at all")
             _logger.exception(err)
+            raise NSWCovidAPIError("NSW Covid API failed to repond.", response=response)
 
         status_code = getattr(response, "status_code", None)
         body = getattr(response, "text", None)
