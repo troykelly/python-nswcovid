@@ -27,9 +27,6 @@ def fatal_code(e):
     return 400 <= e.response.status_code < 500
 
 
-@backoff.on_exception(
-    backoff.expo, requests.exceptions.RequestException, max_time=300, giveup=fatal_code
-)
 class Protocol(object):
     def __init__(
         self,
@@ -78,11 +75,20 @@ class Protocol(object):
             }
         )
 
-        response = None
-        try:
-            response = self.__session.request(
+        @backoff.on_exception(
+            backoff.expo,
+            requests.exceptions.RequestException,
+            max_time=300,
+            giveup=fatal_code,
+        )
+        def do_request():
+            return self.__session.request(
                 method, url, params=params, json=json_data, headers=headers
             )
+
+        response = None
+        try:
+            response = do_request()
         except Exception as err:
             _logger.error("No response at all")
             _logger.exception(err)
