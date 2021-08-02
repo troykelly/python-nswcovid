@@ -93,7 +93,7 @@ class Protocol(object):
         except Exception as err:
             _logger.error("No response at all")
             _logger.exception(err)
-            raise NSWCovidAPIError("NSW Covid API failed to repond.", response=response)
+            raise NSWCovidAPIError("NSW Covid API failed to repond.", response=None)
 
         status_code = getattr(response, "status_code", None)
         body = getattr(response, "text", None)
