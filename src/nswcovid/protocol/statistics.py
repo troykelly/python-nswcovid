@@ -577,17 +577,22 @@ class Statistic(object):
         if self.changed and event_receiver is not None:
             try:
                 event_receiver(
-                    event_type="statistic",
-                    statistic_id=self.__id,
+                    event_type="statistic_updated",
+                    statistic_id=self.id,
                     statistic=self,
                     ts=self.updated,
                 )
                 _logger.debug(
-                    "Change sent to event handler for %s (%d)",
+                    "Change sent to event handler for %s (%s)",
                     self.name,
                     self.id,
                 )
             except Exception as err:
+                _logger.error(
+                    "Failed to send event to event receiver %s (%s)",
+                    self.name,
+                    self.id,
+                )
                 _logger.exception(err)
 
     @property
