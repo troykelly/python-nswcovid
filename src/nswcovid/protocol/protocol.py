@@ -78,6 +78,7 @@ class Protocol(object):
             }
         )
 
+        response = None
         try:
             response = self.__session.request(
                 method, url, params=params, json=json_data, headers=headers
