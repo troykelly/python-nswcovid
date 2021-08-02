@@ -1,6 +1,14 @@
 name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 
-on: push
+on:
+  push:
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types: [published]
+
 jobs:
     build-n-publish:
       name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
