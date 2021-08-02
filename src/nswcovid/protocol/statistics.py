@@ -659,7 +659,7 @@ class Statistic(object):
     @property
     def published(self):
         try:
-            return self.__handler.statistics["published"].state
+            return self.__handler.statistics["published"].status
         except AttributeError:
             return None
 

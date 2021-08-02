@@ -50,4 +50,5 @@ async def test_app():
     assert api.statistics["total_first_dose"].status >= 0
     assert api.statistics["total_second_dose"].status >= 0
     assert api.statistics["total_total_dose"].status >= 0
+    assert isinstance(api.statistics["locally_active"].published, datetime.datetime)
     assert isinstance(api.statistics["published"].status, datetime.datetime)
