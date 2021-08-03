@@ -416,8 +416,6 @@ class StatisticHandler(object):
             _logger.error("No body from server")
             return statistic
 
-        body = get["body"]
-
         value = None
 
         if (
@@ -471,7 +469,7 @@ class StatisticHandler(object):
                 value = str(value)
             elif statistic.typeName == "nswcoviddate":
                 value = datetime.strptime(value.upper(), "%I%p %d %B %Y")
-                value = value.replace(tzinfo=TZ)
+                value = TZ.localize(value)
             elif statistic.typeName == "date":
                 value = datetime.strptime(value, "%d/%m/%Y")
             elif statistic.typeName == "datetime":
