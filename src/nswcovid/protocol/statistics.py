@@ -10,7 +10,6 @@ import re
 import pytz
 import jello
 from jello.lib import opts, load_json, pyquery, Schema, Json
-import glom
 import inspect
 
 from .data_sources import DATA_SOURCES
@@ -170,6 +169,7 @@ class StatisticHandler(object):
             and statistic.json_search is not None
             and get["json_data"] is not None
         ):
+            # https://blog.kellybrazil.com/2020/03/25/jello-the-jq-alternative-for-pythonistas/
             # load the JSON or JSON Lines
             list_dict_data = None
             try:
