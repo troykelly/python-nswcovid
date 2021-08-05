@@ -311,7 +311,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 0 to 9",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"0-9\") | .Females"
     },
@@ -320,7 +320,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 10 to 19",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"10-19\") | .Females"
     },
@@ -329,7 +329,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 20 to 29",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"20-29\") | .Females"
     },
@@ -338,7 +338,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 30 to 39",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"30-39\") | .Females"
     },
@@ -347,7 +347,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 40 to 49",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"40-49\") | .Females"
     },
@@ -356,7 +356,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 50 to 59",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"50-59\") | .Females"
     },
@@ -365,7 +365,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 60 to 69",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"60-69\") | .Females"
     },
@@ -374,7 +374,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 70 to 79",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"70-79\") | .Females"
     },
@@ -383,7 +383,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 80 to 89",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"80-89\") | .Females"
     },
@@ -392,7 +392,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Female 90+",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"90+\") | .Females"
     },
@@ -401,7 +401,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 0 to 9",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"0-9\") | .Males"
     },
@@ -410,7 +410,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 10 to 19",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"10-19\") | .Males"
     },
@@ -419,7 +419,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 20 to 29",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"20-29\") | .Males"
     },
@@ -428,7 +428,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 30 to 39",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"30-39\") | .Males"
     },
@@ -437,7 +437,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 40 to 49",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"40-49\") | .Males"
     },
@@ -446,7 +446,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 50 to 59",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"50-59\") | .Males"
     },
@@ -455,7 +455,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 60 to 69",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"60-69\") | .Males"
     },
@@ -464,7 +464,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 70 to 79",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"70-79\") | .Males"
     },
@@ -473,7 +473,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 80 to 89",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"80-89\") | .Males"
     },
@@ -482,7 +482,7 @@
         "path": "datafiles/fatalitiesdata.json",
         "name": "Lives Lost Male 90+",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "death",
         "iconId": "mdi:grave-stone",
         "jq": ".data[] | select(.ageGroup==\"90+\") | .Males"
     },
@@ -491,7 +491,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 0 to 9",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"0-9\") | .Females"
     },
@@ -500,7 +500,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 10 to 19",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"10-19\") | .Females"
     },
@@ -509,7 +509,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 20 to 29",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"20-29\") | .Females"
     },
@@ -518,7 +518,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 30 to 39",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"30-39\") | .Females"
     },
@@ -527,7 +527,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 40 to 49",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"40-49\") | .Females"
     },
@@ -536,7 +536,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 50 to 59",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"50-59\") | .Females"
     },
@@ -545,7 +545,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 60 to 69",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"60-69\") | .Females"
     },
@@ -554,7 +554,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 70 to 79",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"70-79\") | .Females"
     },
@@ -563,7 +563,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 80 to 89",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"80-89\") | .Females"
     },
@@ -572,7 +572,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Female 90+",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"90+\") | .Females"
     },
@@ -581,7 +581,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 0 to 9",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"0-9\") | .Males"
     },
@@ -590,7 +590,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 10 to 19",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"10-19\") | .Males"
     },
@@ -599,7 +599,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 20 to 29",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"20-29\") | .Males"
     },
@@ -608,7 +608,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 30 to 39",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"30-39\") | .Males"
     },
@@ -617,7 +617,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 40 to 49",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"40-49\") | .Males"
     },
@@ -626,7 +626,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 50 to 59",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"50-59\") | .Males"
     },
@@ -635,7 +635,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 60 to 69",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"60-69\") | .Males"
     },
@@ -644,7 +644,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 70 to 79",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"70-79\") | .Males"
     },
@@ -653,7 +653,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 80 to 89",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"80-89\") | .Males"
     },
@@ -662,7 +662,7 @@
         "path": "datafiles/agedata.json",
         "name": "Cases Male 90+",
         "type": "integer",
-        "unit": "deaths",
+        "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "jq": ".data[] | select(.ageGroup==\"90+\") | .Males"
     },
