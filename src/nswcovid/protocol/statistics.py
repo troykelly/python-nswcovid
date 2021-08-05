@@ -12,6 +12,7 @@ import jq
 import inspect
 
 from .data_sources import DATA_SOURCES
+from .event_payload import event_payload
 
 _logger = logging.getLogger(__name__)
 
@@ -321,12 +322,7 @@ class Statistic(object):
         await self.__handler.details(self.__id)
         if self.changed:
 
-            payload = {
-                "event_type": "statistic_updated",
-                "statistic_id": self.id,
-                "statistic": self,
-                "ts": self.updated,
-            }
+            payload = event_payload("statistic_updated", self, self.updated)
 
             if type(self.__event_listeners) == list and self.__event_listeners:
                 for event_listener in self.__event_listeners:
