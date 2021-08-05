@@ -8,7 +8,9 @@ from datetime import datetime, timedelta
 import asyncio
 import re
 import pytz
-import jq
+import jello
+from jello.lib import opts, load_json, pyquery, Schema, Json
+import glom
 import inspect
 
 from .data_sources import DATA_SOURCES
@@ -164,18 +166,31 @@ class StatisticHandler(object):
             value = reference[0]
 
         if (
-            hasattr(statistic, "jq")
-            and statistic.jq is not None
+            hasattr(statistic, "json_search")
+            and statistic.json_search is not None
             and get["json_data"] is not None
         ):
+            # load the JSON or JSON Lines
+            list_dict_data = None
             try:
-                value = jq.compile(statistic.jq).input(get["json_data"]).first()
-                if statistic.typeName == "integer":
-                    if value is None:
-                        value = 0
-            except Exception as err:
-                _logger.error(err)
+                list_dict_data = load_json(get["body"])
+            except Exception as e:
+                msg = f"""JSON Load Exception: Cannot parse the data (Not valid JSON or JSON Lines)
+            {e}
+            """
+                _logger.error(f"jello:  {msg}")
                 return statistic
+
+            try:
+                value = pyquery(list_dict_data, statistic.json_search)
+                if type(value) == list:
+                    value = value[0]
+            except Exception as e:
+                _logger.exception(e)
+                return statistic
+
+            if statistic.typeName == "integer" and value is None:
+                value = 0
 
         if (
             hasattr(statistic, "regex")
@@ -292,8 +307,8 @@ class Statistic(object):
                 self.__selector = data["selector"]
             if "xpath" in data:
                 self.__xpath = data["xpath"]
-            if "jq" in data:
-                self.__jq = data["jq"]
+            if "json_search" in data:
+                self.__json_search = data["json_search"]
             if "regex" in data:
                 self.__regex = data["regex"]
             if "typeId" in data:
@@ -510,9 +525,9 @@ class Statistic(object):
             return None
 
     @property
-    def jq(self):
+    def json_search(self):
         try:
-            return self.__jq
+            return self.__json_search
         except AttributeError:
             return None
 

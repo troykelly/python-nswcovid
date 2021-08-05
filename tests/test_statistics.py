@@ -7,6 +7,7 @@ import datetime
 from nswcovid import NSWCovid
 
 logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 __author__ = "Troy Kelly"
 __copyright__ = "Troy Kelly"
@@ -15,7 +16,11 @@ __license__ = "mit"
 
 @pytest.mark.asyncio
 async def test_app():
+    def event_receiver(payload):
+        _logger.debug(payload)
+
     api = NSWCovid()
+    api.addListener(event_receiver)
     await api.refresh()
     assert (
         api.statistics["locally_active"].status
