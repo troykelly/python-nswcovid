@@ -52,10 +52,6 @@ class Protocol(object):
         self.__expiryms = int(expiryms)
         self.__cache_data = {}
 
-        self.__api_url = (
-            f"{self.__protocol}://{self.__host}:{self.__port}/{self.__path}"
-        )
-
         _logger.debug("Protocol handler ready.")
 
     @property
@@ -144,7 +140,9 @@ class Protocol(object):
         """
 
         request_host = (
-            f"{self.__protocol}://{self.__host}:{self.__port}" if not host else host
+            f"{self.__protocol}://{self.__host}:{self.__port}"
+            if not host
+            else f"{self.__protocol}://{host}"
         )
 
         url = f"{request_host}/{self.__path}" if not path else f"{request_host}/{path}"
@@ -176,12 +174,12 @@ class Protocol(object):
 
         body = None
 
-        def process_request(method, url, params, jsonRequestData, headers):
+        def process_request(method, url, params, json_request_data, headers):
             return self.__request(
                 method=method,
                 url=url,
                 params=params,
-                json_data=jsonRequestData,
+                json_data=json_request_data,
                 headers=headers,
             )
 
@@ -207,6 +205,12 @@ class Protocol(object):
         if not body:
             return None
 
+        json_response = None
+        try:
+            json_response = json.loads(body)
+        except:
+            pass
+
         soup = None
         dom = None
         try:
@@ -219,7 +223,14 @@ class Protocol(object):
             pass
 
         if method == "GET":
-            self.__cache(url=url, query_string=params, body=body, soup=soup, dom=dom)
+            self.__cache(
+                url=url,
+                query_string=params,
+                body=body,
+                soup=soup,
+                dom=dom,
+                json_data=json_response,
+            )
 
         return {
             "retrieved": datetime.now(),
@@ -227,6 +238,7 @@ class Protocol(object):
             "body": body,
             "soup": soup,
             "dom": dom,
+            "json_data": json_response,
         }
 
     async def api_get(self, path=None, data=None, host=None):
@@ -271,7 +283,15 @@ class Protocol(object):
             "PUT", path=path, data=data, query_string=query_string, host=host
         )
 
-    def __cache(self, url=None, query_string=None, body=None, soup=None, dom=None):
+    def __cache(
+        self,
+        url=None,
+        query_string=None,
+        body=None,
+        soup=None,
+        dom=None,
+        json_data=None,
+    ):
         """Handle caching of GET queries
 
         Attributes:
@@ -299,6 +319,7 @@ class Protocol(object):
                 "body": body,
                 "soup": soup,
                 "dom": dom,
+                "json_data": json_data,
             }
             return self.__cache_data[cache_key]
 
