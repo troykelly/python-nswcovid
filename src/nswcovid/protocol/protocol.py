@@ -10,6 +10,7 @@ import json
 import hashlib
 import requests
 import backoff
+import sys
 from bs4 import BeautifulSoup
 from lxml import etree
 
@@ -63,16 +64,6 @@ class Protocol(object):
     def __request(
         self, method="GET", url=None, params=None, json_data=None, headers=None
     ):
-
-        _logger.debug(
-            {
-                "url": url,
-                "params": params,
-                "data": json_data,
-                "headers": headers,
-            }
-        )
-
         @backoff.on_exception(
             backoff.expo,
             requests.exceptions.RequestException,
@@ -117,6 +108,7 @@ class Protocol(object):
                 response=response,
             )
 
+        _logger.debug("[%s] (%d bytes) %s", method, sys.getsizeof(body), url)
         return body
 
     async def api(
