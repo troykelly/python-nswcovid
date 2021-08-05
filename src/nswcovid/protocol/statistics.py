@@ -8,321 +8,22 @@ from datetime import datetime, timedelta
 import asyncio
 import re
 import pytz
+import jq
+
+from .data_sources import DATA_SOURCES
 
 _logger = logging.getLogger(__name__)
 
 TZ = pytz.timezone("Australia/Sydney")
 ATTRIBUTION = "© State of New South Wales NSW Ministry of Health. For current information go to www.health.nsw.gov.au"
-DATA_SOURCES = {
-    "published": {
-        "host": None,
-        "path": None,
-        "name": "Published",
-        "type": "nswcoviddate",
-        "unit": "date",
-        "iconId": "mdi:calendar-range",
-        "selector": "#maincontent > nav > h1",
-        "regex": "\\d+[ap]m\\s+\\d+\\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\\s+(?:20)?\\d\\d",
-    },
-    "locally_active": {
-        "host": None,
-        "path": None,
-        "name": "Locally Active",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(1) > span",
-    },
-    "interstate_active": {
-        "host": None,
-        "path": None,
-        "name": "Interstate Active",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(2) > span",
-    },
-    "overseas_active": {
-        "host": None,
-        "path": None,
-        "name": "Overseas Active",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(3) > span",
-    },
-    "last_24_hours_known": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Known Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#known > ul > li:nth-child(1) > span.number",
-    },
-    "last_24_hours_unknown": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Unknown Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#unknown > ul > li:nth-child(1) > span.number",
-    },
-    "last_24_hours_interstate": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Interstate Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#interstate > ul > li:nth-child(1) > span.number",
-    },
-    "last_24_hours_overseas": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Overseas Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#overseas > ul > li:nth-child(1) > span.number",
-    },
-    "last_24_hours_total": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Total",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#case > ul > li:nth-child(1) > span.number",
-    },
-    "last_24_hours_tests": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(1) > span.number",
-    },
-    "this_week_known": {
-        "host": None,
-        "path": None,
-        "name": "This Week Known Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#known > ul > li:nth-child(2) > span.number",
-    },
-    "this_week_unknown": {
-        "host": None,
-        "path": None,
-        "name": "This Week Unknown Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#unknown > ul > li:nth-child(2) > span.number",
-    },
-    "this_week_interstate": {
-        "host": None,
-        "path": None,
-        "name": "This Week Interstate Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#interstate > ul > li:nth-child(2) > span.number",
-    },
-    "this_week_overseas": {
-        "host": None,
-        "path": None,
-        "name": "This Week Overseas Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#overseas > ul > li:nth-child(2) > span.number",
-    },
-    "this_week_total": {
-        "host": None,
-        "path": None,
-        "name": "This Week Total",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#case > ul > li:nth-child(2) > span.number",
-    },
-    "this_week_tests": {
-        "host": None,
-        "path": None,
-        "name": "This Week Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(2) > span.number",
-    },
-    "last_week_known": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Known Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#known > ul > li:nth-child(3) > span.number",
-    },
-    "last_week_unknown": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Unknown Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#unknown > ul > li:nth-child(3) > span.number",
-    },
-    "last_week_interstate": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Interstate Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#interstate > ul > li:nth-child(3) > span.number",
-    },
-    "last_week_overseas": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Overseas Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#overseas > ul > li:nth-child(3) > span.number",
-    },
-    "last_week_total": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Total",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#case > ul > li:nth-child(3) > span.number",
-    },
-    "last_week_tests": {
-        "host": None,
-        "path": None,
-        "name": "Last Week Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(3) > span.number",
-    },
-    "this_year_known": {
-        "host": None,
-        "path": None,
-        "name": "This Year Known Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#known > ul > li:nth-child(4) > span.number",
-    },
-    "this_year_unknown": {
-        "host": None,
-        "path": None,
-        "name": "This Year Unknown Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#unknown > ul > li:nth-child(4) > span.number",
-    },
-    "this_year_interstate": {
-        "host": None,
-        "path": None,
-        "name": "This Year Interstate Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#interstate > ul > li:nth-child(4) > span.number",
-    },
-    "this_year_overseas": {
-        "host": None,
-        "path": None,
-        "name": "This Year Overseas Source",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#overseas > ul > li:nth-child(4) > span.number",
-    },
-    "this_year_total": {
-        "host": None,
-        "path": None,
-        "name": "This Year Total",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:virus",
-        "selector": "#case > ul > li:nth-child(4) > span.number",
-    },
-    "this_year_tests": {
-        "host": None,
-        "path": None,
-        "name": "This Year Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(4) > span.number",
-    },
-    "last_24_hours_first_dose": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours First Dose Vaccine",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[2]/td[2]/text()',
-    },
-    "last_24_hours_second_dose": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Second Dose Vaccine",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[3]/td[2]/text()',
-    },
-    "last_24_hours_total_dose": {
-        "host": None,
-        "path": None,
-        "name": "Last 24 Hours Vaccine Total",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[4]/td[2]/text()',
-    },
-    "total_first_dose": {
-        "host": None,
-        "path": None,
-        "name": "Total First Dose Vaccine",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[2]/td[3]/text()',
-    },
-    "total_second_dose": {
-        "host": None,
-        "path": None,
-        "name": "Total Second Dose Vaccine",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[3]/td[3]/text()',
-    },
-    "total_total_dose": {
-        "host": None,
-        "path": None,
-        "name": "Total Vaccine Doses",
-        "type": "integer",
-        "unit": "dose",
-        "iconId": "mdi:needle",
-        "xpath": '//*[@id="ContentHtml1Zone2"]/div[3]/div/table/tbody/tr[4]/td[3]/text()',
-    },
-}
-# ENABLED_DATA_SOURCES = ["published", "total_first_dose"]
+
+# This is for testing mostly
+# ENABLED_DATA_SOURCES = [
+#     "published",
+#     "locally_active",
+#     "lives_lost_male_0_9",
+#     "lives_lost_male_70_79",
+# ]
 ENABLED_DATA_SOURCES = list()
 
 
@@ -369,8 +70,11 @@ class StatisticHandler(object):
             page += 1
             all_statistics = await self.__listall(limit=limit, page=page)
         statistic_ids = self.__statistics.keys()
+        tasks = list()
         for id in statistic_ids:
-            await self.__statistics[id].refresh()
+            task = self.__protocol.loop.create_task(self.__statistics[id].refresh())
+            tasks.append(task)
+            await task
         return self.__statistics
 
     async def __listall(self, limit=20, page=1):
@@ -397,11 +101,13 @@ class StatisticHandler(object):
         if not id in self.__statistics:
             return None
         statistic = self.__statistics[id]
+        _logger.debug("%s getting value (%s)", statistic.name, statistic.id)
         try:
             get = await self.__protocol.api_get(
                 host=statistic.host, path=statistic.path
             )
-        except:
+        except Exception as err:
+            _logger.error(err)
             return statistic
 
         if not get:
@@ -430,9 +136,6 @@ class StatisticHandler(object):
 
             value = reference.string
 
-            if not value:
-                return statistic
-
         if (
             hasattr(statistic, "xpath")
             and statistic.xpath is not None
@@ -445,31 +148,55 @@ class StatisticHandler(object):
 
             value = reference[0]
 
-            if not value:
+        if (
+            hasattr(statistic, "jq")
+            and statistic.jq is not None
+            and get["json_data"] is not None
+        ):
+            try:
+                value = jq.compile(statistic.jq).input(get["json_data"]).first()
+                if statistic.typeName == "integer":
+                    if value is None:
+                        value = 0
+            except Exception as err:
+                _logger.error(err)
                 return statistic
 
-        if hasattr(statistic, "regex") and statistic.regex is not None:
+        if (
+            hasattr(statistic, "regex")
+            and statistic.regex is not None
+            and value is not None
+        ):
             match = statistic.regex.search(str(value))
             if not match:
                 return statistic
 
             value = match.group()
 
-            if not value:
-                return statistic
-
-        if hasattr(statistic, "typeName") and statistic.typeName is not None:
+        if (
+            hasattr(statistic, "typeName")
+            and statistic.typeName is not None
+            and value is not None
+        ):
             if statistic.typeName == "integer":
-                value = int(value.replace(",", ""))
+                if isinstance(value, str):
+                    value = int(value.replace(",", ""))
+                else:
+                    value = int(value)
             elif statistic.typeName == "float":
-                value = float(value.replace(",", ""))
+                if isinstance(value, str):
+                    value = float(value.replace(",", ""))
+                else:
+                    value = float(value)
             elif statistic.typeName == "boolean":
                 value = bool(value)
-            elif statistic.typeName == "string":
+            elif statistic.typeName == "string" and not isinstance(value, str):
                 value = str(value)
             elif statistic.typeName == "nswcoviddate":
                 value = datetime.strptime(value.upper(), "%I%p %d %B %Y")
                 value = TZ.localize(value)
+            elif statistic.typeName == "dateymd":
+                value = datetime.strptime(value, "%Y-%m-%d")
             elif statistic.typeName == "date":
                 value = datetime.strptime(value, "%d/%m/%Y")
             elif statistic.typeName == "datetime":
@@ -484,15 +211,21 @@ class StatisticHandler(object):
         statistic.status = value
         if retrieved:
             statistic.updated = retrieved
+        _logger.debug(
+            "%s got value (%s): %s", statistic.name, statistic.id, statistic.status
+        )
         return statistic
 
     async def __refresh(self, event_receiver=None):
         await self.__protocol.api_get()
         statistic_ids = self.__statistics.keys()
+        tasks = list()
         for id in statistic_ids:
-            self.__protocol.loop.create_task(
+            task = self.__protocol.loop.create_task(
                 self.__statistics[id].refresh(event_receiver)
             )
+            tasks.append(task)
+            await task
 
     async def __track(self, interval, event_receiver=None):
         while True:
@@ -546,6 +279,8 @@ class Statistic(object):
                 self.__selector = data["selector"]
             if "xpath" in data:
                 self.__xpath = data["xpath"]
+            if "jq" in data:
+                self.__jq = data["jq"]
             if "regex" in data:
                 self.__regex = data["regex"]
             if "typeId" in data:
@@ -726,6 +461,13 @@ class Statistic(object):
     def xpath(self):
         try:
             return self.__xpath
+        except AttributeError:
+            return None
+
+    @property
+    def jq(self):
+        try:
+            return self.__jq
         except AttributeError:
             return None
 
