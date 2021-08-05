@@ -698,7 +698,7 @@
         "path": "datafiles/state_vaccination_metrics.json",
         "name": "NSW Health Doses Updated",
         "type": "dateymd",
-        "unit": "dose",
+        "unit": "date",
         "iconId": "mdi:calendar-range",
         "jq": ".nswHealthUpdatedDate"
     },
@@ -707,7 +707,7 @@
         "path": "datafiles/state_vaccination_metrics.json",
         "name": "GP Network Doses Updated",
         "type": "dateymd",
-        "unit": "dose",
+        "unit": "date",
         "iconId": "mdi:calendar-range",
         "jq": ".gpNetworkUpdatedDate"
     }
