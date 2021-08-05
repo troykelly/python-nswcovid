@@ -9,6 +9,7 @@ import asyncio
 import re
 import pytz
 import jq
+import inspect
 
 from .data_sources import DATA_SOURCES
 
@@ -28,9 +29,10 @@ ENABLED_DATA_SOURCES = list()
 
 
 class StatisticHandler(object):
-    def __init__(self, protocol):
+    def __init__(self, protocol, event_listeners=None):
         super().__init__()
         self.__protocol = protocol
+        self.__event_listeners = event_listeners
         self.__statistics = {}
 
     @property
@@ -61,11 +63,17 @@ class StatisticHandler(object):
                     if len(ENABLED_DATA_SOURCES) > 0:
                         if statistic_id in ENABLED_DATA_SOURCES:
                             self.__statistics[statistic_id] = Statistic(
-                                handler=self, id=statistic_id, data=statistic_reference
+                                handler=self,
+                                id=statistic_id,
+                                data=statistic_reference,
+                                event_listeners=self.__event_listeners,
                             )
                     else:
                         self.__statistics[statistic_id] = Statistic(
-                            handler=self, id=statistic_id, data=statistic_reference
+                            handler=self,
+                            id=statistic_id,
+                            data=statistic_reference,
+                            event_listeners=self.__event_listeners,
                         )
             page += 1
             all_statistics = await self.__listall(limit=limit, page=page)
@@ -132,6 +140,9 @@ class StatisticHandler(object):
             reference = get["soup"].select_one(statistic.selector)
 
             if not reference:
+                _logger.error(
+                    "%s could not find selector %s", statistic.id, statistic.selector
+                )
                 return statistic
 
             value = reference.string
@@ -144,6 +155,9 @@ class StatisticHandler(object):
             reference = get["dom"].xpath(statistic.xpath)
 
             if not reference and reference[0]:
+                _logger.error(
+                    "%s could not find xpath %s", statistic.id, statistic.selector
+                )
                 return statistic
 
             value = reference[0]
@@ -255,14 +269,12 @@ class StatisticHandler(object):
 
 
 class Statistic(object):
-    def __init__(self, handler=None, id=None, data=None):
+    def __init__(self, handler=None, id=None, data=None, event_listeners=None):
         super().__init__()
 
-        if handler:
-            self.__handler = handler
-
-        if id:
-            self.__id = id
+        self.__handler = handler
+        self.__id = id
+        self.__event_listeners = event_listeners
 
         if data:
             if "host" in data:
@@ -307,26 +319,63 @@ class Statistic(object):
         if not self.__id:
             return
         await self.__handler.details(self.__id)
-        if self.changed and event_receiver is not None:
-            try:
-                event_receiver(
-                    event_type="statistic_updated",
-                    statistic_id=self.id,
-                    statistic=self,
-                    ts=self.updated,
-                )
-                _logger.debug(
-                    "Change sent to event handler for %s (%s)",
-                    self.name,
-                    self.id,
-                )
-            except Exception as err:
-                _logger.error(
-                    "Failed to send event to event receiver %s (%s)",
-                    self.name,
-                    self.id,
-                )
-                _logger.exception(err)
+        if self.changed:
+
+            payload = {
+                "event_type": "statistic_updated",
+                "statistic_id": self.id,
+                "statistic": self,
+                "ts": self.updated,
+            }
+
+            if type(self.__event_listeners) == list and self.__event_listeners:
+                for event_listener in self.__event_listeners:
+                    if callable(event_listener):
+                        _logger.debug(
+                            "Event triggered for %s to %s",
+                            self.id,
+                            event_listener.__name__,
+                        )
+                        try:
+                            if inspect.iscoroutinefunction(event_listener):
+                                await event_listener(payload)
+                            else:
+                                event_listener(payload)
+                        except Exception as err:
+                            _logger.error(
+                                "Event trigger failed for %s to %s",
+                                self.id,
+                                event_listener.__name__,
+                            )
+                            _logger.exception(err)
+                    else:
+                        _logger.warning(
+                            "An uncallable event listener exists of type %s",
+                            type(event_listener),
+                        )
+
+            if event_receiver is not None:
+                if callable(event_receiver):
+                    _logger.debug(
+                        "Event triggered for %s to %s", self.id, event_receiver.__name__
+                    )
+                    try:
+                        if inspect.iscoroutinefunction(event_receiver):
+                            await event_receiver(payload)
+                        else:
+                            event_receiver(payload)
+                    except Exception as err:
+                        _logger.error(
+                            "Event trigger failed for %s to %s",
+                            self.id,
+                            event_receiver.__name__,
+                        )
+                        _logger.exception(err)
+                else:
+                    _logger.warning(
+                        "An uncallable event receiver exists of type %s",
+                        type(event_receiver),
+                    )
 
     @property
     def id(self):

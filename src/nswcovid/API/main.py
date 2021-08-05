@@ -15,16 +15,33 @@ class NSWCovid(object):
         self.__statistics_handler = None
         self.__statistics = None
         self.__track = None
+        self.__event_listeners = list()
 
     async def refresh(self):
         _logger.debug("Refresing...")
         if not self.__statistics:
-            self.__statistics_handler = statistics.StatisticHandler(self.__protocol)
+            self.__statistics_handler = statistics.StatisticHandler(
+                protocol=self.__protocol, event_listeners=self.__event_listeners
+            )
             await self.__statistics_handler.build()
             self.__statistics = self.__statistics_handler.statistics
             self.__track = self.__statistics_handler.track
         else:
             self.__statistics_handler.build()
+        return True
+
+    def addListener(self, event_listener):
+        _logger.debug("Adding event receiver")
+        if not event_listener in self.__event_listeners:
+            self.__event_listeners.append(event_listener)
+        return event_listener
+
+    def removeListener(self, event_listener):
+        _logger.debug("Removing event receiver")
+        if event_listener in self.__event_listeners:
+            self.__event_listeners.remove(event_listener)
+        else:
+            return False
         return True
 
     @property
