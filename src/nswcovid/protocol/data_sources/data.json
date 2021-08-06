@@ -48,7 +48,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_unknown": {
         "host": null,
@@ -58,7 +59,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_interstate": {
         "host": null,
@@ -68,7 +70,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_overseas": {
         "host": null,
@@ -78,7 +81,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_total": {
         "host": null,
@@ -88,7 +92,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_tests": {
         "host": null,
@@ -98,7 +103,8 @@
         "unit": "test",
         "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(1) > span.number",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "this_week_known": {
         "host": null,
@@ -288,7 +294,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[2]/td[2]/text()",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_second_dose": {
         "host": null,
@@ -298,7 +305,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[3]/td[2]/text()",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "last_24_hours_total_dose": {
         "host": null,
@@ -308,7 +316,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[4]/td[2]/text()",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "total_first_dose": {
         "host": null,
@@ -748,7 +757,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.nswHealthDosesDaily",
-        "measurement": true
+        "measurement": true,
+        "restting": true
     },
     "nsw_health_doses_cumulative": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",

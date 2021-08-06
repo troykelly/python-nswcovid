@@ -321,6 +321,10 @@ class Statistic(object):
                 self.__measurement = bool(data["measurement"])
             else:
                 self.__measurement = False
+            if "restting" in data:
+                self.__restting = bool(data["restting"])
+            else:
+                self.__restting = False
 
         self.__attribution = ATTRIBUTION
         self.__previous_value = None
@@ -490,6 +494,13 @@ class Statistic(object):
     def measurement(self):
         try:
             return self.__measurement
+        except AttributeError:
+            return None
+
+    @property
+    def restting(self):
+        try:
+            return self.__restting
         except AttributeError:
             return None
 
