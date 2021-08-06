@@ -8,7 +8,7 @@
         "iconId": "mdi:calendar-range",
         "selector": "#maincontent > nav > h1",
         "regex": "\\d+[ap]m\\s+\\d+\\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\\s+(?:20)?\\d\\d",
-        "statistic": false
+        "measurement": false
     },
     "locally_active": {
         "host": null,
@@ -18,7 +18,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(1) > span",
-        "statistic": true
+        "measurement": true
     },
     "interstate_active": {
         "host": null,
@@ -28,7 +28,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(2) > span",
-        "statistic": true
+        "measurement": true
     },
     "overseas_active": {
         "host": null,
@@ -38,7 +38,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(3) > span",
-        "statistic": true
+        "measurement": true
     },
     "last_24_hours_known": {
         "host": null,
@@ -48,7 +48,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_unknown": {
         "host": null,
@@ -58,7 +59,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_interstate": {
         "host": null,
@@ -68,7 +70,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_overseas": {
         "host": null,
@@ -78,7 +81,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_total": {
         "host": null,
@@ -88,7 +92,8 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_tests": {
         "host": null,
@@ -98,7 +103,8 @@
         "unit": "test",
         "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(1) > span.number",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "this_week_known": {
         "host": null,
@@ -108,7 +114,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_week_unknown": {
         "host": null,
@@ -118,7 +124,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_week_interstate": {
         "host": null,
@@ -128,7 +134,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_week_overseas": {
         "host": null,
@@ -138,7 +144,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_week_total": {
         "host": null,
@@ -148,7 +154,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_week_tests": {
         "host": null,
@@ -158,7 +164,7 @@
         "unit": "test",
         "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(2) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_known": {
         "host": null,
@@ -168,7 +174,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_unknown": {
         "host": null,
@@ -178,7 +184,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_interstate": {
         "host": null,
@@ -188,7 +194,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_overseas": {
         "host": null,
@@ -198,7 +204,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_total": {
         "host": null,
@@ -208,7 +214,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_week_tests": {
         "host": null,
@@ -218,7 +224,7 @@
         "unit": "test",
         "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(3) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_known": {
         "host": null,
@@ -228,7 +234,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_unknown": {
         "host": null,
@@ -238,7 +244,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_interstate": {
         "host": null,
@@ -248,7 +254,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_overseas": {
         "host": null,
@@ -258,7 +264,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_total": {
         "host": null,
@@ -268,7 +274,7 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "this_year_tests": {
         "host": null,
@@ -278,7 +284,7 @@
         "unit": "test",
         "iconId": "mdi:test-tube",
         "selector": "#testing > ul > li:nth-child(4) > span.number",
-        "statistic": true
+        "measurement": true
     },
     "last_24_hours_first_dose": {
         "host": null,
@@ -288,7 +294,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[2]/td[2]/text()",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_second_dose": {
         "host": null,
@@ -298,7 +305,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[3]/td[2]/text()",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "last_24_hours_total_dose": {
         "host": null,
@@ -308,7 +316,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[4]/td[2]/text()",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "total_first_dose": {
         "host": null,
@@ -318,7 +327,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[2]/td[3]/text()",
-        "statistic": true
+        "measurement": true
     },
     "total_second_dose": {
         "host": null,
@@ -328,7 +337,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[3]/td[3]/text()",
-        "statistic": true
+        "measurement": true
     },
     "total_total_dose": {
         "host": null,
@@ -338,7 +347,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[4]/td[3]/text()",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_0_9": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -348,7 +357,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"0-9\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_10_19": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -358,7 +367,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"10-19\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_20_29": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -368,7 +377,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"20-29\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_30_39": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -378,7 +387,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"30-39\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_40_49": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -388,7 +397,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"40-49\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_50_59": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -398,7 +407,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"50-59\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_60_69": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -408,7 +417,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"60-69\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_70_79": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -418,7 +427,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"70-79\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_80_89": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -428,7 +437,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"80-89\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_female_90_plus": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -438,7 +447,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Females for data in _.data if \"90+\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_0_9": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -448,7 +457,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"0-9\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_10_19": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -458,7 +467,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"10-19\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_20_29": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -468,7 +477,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"20-29\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_30_39": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -478,7 +487,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"30-39\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_40_49": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -488,7 +497,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"40-49\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_50_59": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -498,7 +507,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"50-59\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_60_69": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -508,7 +517,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"60-69\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_70_79": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -518,7 +527,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"70-79\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_80_89": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -528,7 +537,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"80-89\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "lives_lost_male_90_plus": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -538,7 +547,7 @@
         "unit": "death",
         "iconId": "mdi:grave-stone",
         "json_search": "[data.Males for data in _.data if \"90+\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_0_9": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -548,7 +557,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"0-9\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_10_19": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -558,7 +567,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"10-19\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_20_29": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -568,7 +577,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"20-29\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_30_39": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -578,7 +587,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"30-39\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_40_49": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -588,7 +597,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"40-49\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_50_59": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -598,7 +607,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"50-59\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_60_69": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -608,7 +617,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"60-69\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_70_79": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -618,7 +627,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"70-79\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_80_89": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -628,7 +637,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"80-89\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_female_90_plus": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -638,7 +647,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Females for data in _.data if \"90+\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_0_9": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -648,7 +657,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"0-9\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_10_19": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -658,7 +667,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"10-19\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_20_29": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -668,7 +677,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"20-29\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_30_39": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -678,7 +687,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"30-39\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_40_49": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -688,7 +697,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"40-49\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_50_59": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -698,7 +707,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"50-59\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_60_69": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -708,7 +717,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"60-69\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_70_79": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -718,7 +727,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"70-79\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_80_89": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -728,7 +737,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"80-89\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "cases_male_90_plus": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -738,7 +747,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
         "json_search": "[data.Males for data in _.data if \"90+\" in data.ageGroup]",
-        "statistic": true
+        "measurement": true
     },
     "nsw_health_doses_daily": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -748,7 +757,8 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.nswHealthDosesDaily",
-        "statistic": true
+        "measurement": true,
+        "resetting": true
     },
     "nsw_health_doses_cumulative": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -758,7 +768,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.nswHealthDosesCumulative",
-        "statistic": true
+        "measurement": true
     },
     "gp_network_doses_cumulative": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -768,7 +778,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.gpNetworkDosesCumulative",
-        "statistic": true
+        "measurement": true
     },
     "nsw_health_doses_updated": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -778,7 +788,7 @@
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "json_search": "_.nswHealthUpdatedDate",
-        "statistic": false
+        "measurement": false
     },
     "gp_network_doses_updated": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -788,7 +798,7 @@
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "json_search": "_.gpNetworkUpdatedDate",
-        "statistic": false
+        "measurement": false
     },
     "all_providers_doses_cumulative": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -798,7 +808,7 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.allProvidersDosesCumulative",
-        "statistic": true
+        "measurement": true
     },
     "recovered": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -808,7 +818,7 @@
         "unit": "case",
         "iconId": "mdi:emoticon-happy",
         "json_search": "[data.Recovered for data in _.data]",
-        "statistic": true
+        "measurement": true
     },
     "local_cases_with_known_source": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -818,7 +828,7 @@
         "unit": "case",
         "iconId": "mdi:map-marker-check",
         "json_search": "[data.LocalCasesWithKnownSource for data in _.data]",
-        "statistic": true
+        "measurement": true
     },
     "local_cases_with_unknown_source": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -828,7 +838,7 @@
         "unit": "case",
         "iconId": "mdi:map-marker-question",
         "json_search": "[data.LocalCasesWithUnknownSource for data in _.data]",
-        "statistic": true
+        "measurement": true
     },
     "inter_state_cases": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -838,7 +848,7 @@
         "unit": "case",
         "iconId": "mdi:truck-fast",
         "json_search": "[data.InterStateCases for data in _.data]",
-        "statistic": true
+        "measurement": true
     },
     "overseas_cases": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -848,7 +858,7 @@
         "unit": "case",
         "iconId": "mdi:airplane-landing",
         "json_search": "[data.OverseasCases for data in _.data]",
-        "statistic": true
+        "measurement": true
     },
     "test_stats_reporting_date": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -858,7 +868,7 @@
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "json_search": "[data.TestStatsReportingDate for data in _.data]",
-        "statistic": false
+        "measurement": false
     },
     "case_stats_reporting_date": {
         "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -868,6 +878,6 @@
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "json_search": "[data.CaseStatsReportingDate for data in _.data]",
-        "statistic": false
+        "measurement": false
     }
 }

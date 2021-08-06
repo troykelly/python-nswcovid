@@ -317,10 +317,14 @@ class Statistic(object):
                 self.__icon = data["icon"]
             if "iconId" in data:
                 self.__iconId = data["iconId"]
-            if "statistic" in data:
-                self.__statistic = bool(data["statistic"])
+            if "measurement" in data:
+                self.__measurement = bool(data["measurement"])
             else:
-                self.__statistic = False
+                self.__measurement = False
+            if "resetting" in data:
+                self.__resetting = bool(data["resetting"])
+            else:
+                self.__resetting = False
 
         self.__attribution = ATTRIBUTION
         self.__previous_value = None
@@ -487,9 +491,16 @@ class Statistic(object):
             return None
 
     @property
-    def statistic(self):
+    def measurement(self):
         try:
-            return self.__statistic
+            return self.__measurement
+        except AttributeError:
+            return None
+
+    @property
+    def resetting(self):
+        try:
+            return self.__resetting
         except AttributeError:
             return None
 
