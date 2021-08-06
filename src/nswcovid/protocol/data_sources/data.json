@@ -710,5 +710,77 @@
         "unit": "date",
         "iconId": "mdi:calendar-range",
         "json_search": "_.gpNetworkUpdatedDate"
+    },
+    "all_providers_doses_cumulative": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/state_vaccination_metrics.json",
+        "name": "All Providers Doses Cumulative",
+        "type": "integer",
+        "unit": "dose",
+        "iconId": "mdi:needle",
+        "json_search": "_.allProvidersDosesCumulative"
+    },
+    "recovered": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Recovered",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:emoticon-happy",
+        "json_search": "[data.Recovered for data in _.data]"
+    },
+    "local_cases_with_known_source": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Local Cases With Known Source",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:map-marker-check",
+        "json_search": "[data.LocalCasesWithKnownSource for data in _.data]"
+    },
+    "local_cases_with_unknown_source": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Local Cases With Unknown Source",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:map-marker-question",
+        "json_search": "[data.LocalCasesWithUnknownSource for data in _.data]"
+    },
+    "inter_state_cases": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Inter State Cases",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:truck-fast",
+        "json_search": "[data.InterStateCases for data in _.data]"
+    },
+    "overseas_cases": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Overseas Cases",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:airplane-landing",
+        "json_search": "[data.OverseasCases for data in _.data]"
+    },
+    "test_stats_reporting_date": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Test Stats Reporting Date",
+        "type": "dateymd",
+        "unit": "date",
+        "iconId": "mdi:calendar-range",
+        "json_search": "[data.TestStatsReportingDate for data in _.data]"
+    },
+    "case_stats_reporting_date": {
+        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
+        "path": "datafiles/stats.json",
+        "name": "Case Stats Reporting Date",
+        "type": "dateymd",
+        "unit": "date",
+        "iconId": "mdi:calendar-range",
+        "json_search": "[data.CaseStatsReportingDate for data in _.data]"
     }
 }
