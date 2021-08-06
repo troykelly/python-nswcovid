@@ -8,7 +8,7 @@
       "iconId": "mdi:calendar-range",
       "selector": "#maincontent > nav > h1",
       "regex": "\\d+[ap]m\\s+\\d+\\s+(?:january|february|march|april|may|june|july|august|september|october|november|december)\\s+(?:20)?\\d\\d",
-      "statistic": true
+      "statistic": false
     },
     "locally_active": {
       "host": null,
@@ -778,7 +778,7 @@
       "unit": "date",
       "iconId": "mdi:calendar-range",
       "json_search": "_.nswHealthUpdatedDate",
-      "statistic": true
+      "statistic": false
     },
     "gp_network_doses_updated": {
       "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -788,7 +788,7 @@
       "unit": "date",
       "iconId": "mdi:calendar-range",
       "json_search": "_.gpNetworkUpdatedDate",
-      "statistic": true
+      "statistic": false
     },
     "all_providers_doses_cumulative": {
       "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -858,7 +858,7 @@
       "unit": "date",
       "iconId": "mdi:calendar-range",
       "json_search": "[data.TestStatsReportingDate for data in _.data]",
-      "statistic": true
+      "statistic": false
     },
     "case_stats_reporting_date": {
       "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
@@ -867,6 +867,7 @@
       "type": "dateymd",
       "unit": "date",
       "iconId": "mdi:calendar-range",
-      "json_search": "[data.CaseStatsReportingDate for data in _.data]"
+      "json_search": "[data.CaseStatsReportingDate for data in _.data]",
+      "statistic": false
     }
   }
