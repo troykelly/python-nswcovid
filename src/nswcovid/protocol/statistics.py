@@ -321,10 +321,10 @@ class Statistic(object):
                 self.__measurement = bool(data["measurement"])
             else:
                 self.__measurement = False
-            if "restting" in data:
-                self.__restting = bool(data["restting"])
+            if "resetting" in data:
+                self.__resetting = bool(data["resetting"])
             else:
-                self.__restting = False
+                self.__resetting = False
 
         self.__attribution = ATTRIBUTION
         self.__previous_value = None
@@ -498,9 +498,9 @@ class Statistic(object):
             return None
 
     @property
-    def restting(self):
+    def resetting(self):
         try:
-            return self.__restting
+            return self.__resetting
         except AttributeError:
             return None
 
