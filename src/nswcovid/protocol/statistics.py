@@ -317,6 +317,10 @@ class Statistic(object):
                 self.__icon = data["icon"]
             if "iconId" in data:
                 self.__iconId = data["iconId"]
+            if "statistic" in data:
+                self.__statistic = bool(data["statistic"])
+            else:
+                self.__statistic = False
 
         self.__attribution = ATTRIBUTION
         self.__previous_value = None
@@ -479,6 +483,13 @@ class Statistic(object):
     def iconId(self):
         try:
             return self.__iconId
+        except AttributeError:
+            return None
+
+    @property
+    def statistic(self):
+        try:
+            return self.__statistic
         except AttributeError:
             return None
 
