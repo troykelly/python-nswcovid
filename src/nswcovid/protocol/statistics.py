@@ -210,7 +210,13 @@ class StatisticHandler(object):
         ):
             if statistic.typeName == "integer":
                 if isinstance(value, str):
-                    value = int(value.replace(",", ""))
+                    try:
+                        value = int(re.sub("[^0-9]", "", value))
+                    except Exception as err:
+                        _logger.error(
+                            "Failed converting %s to integer: %s", statistic.id, value
+                        )
+                        _logger.error(err)
                 else:
                     value = int(value)
             elif statistic.typeName == "float":
