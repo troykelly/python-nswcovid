@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 
 
 class event_payload(object):
@@ -35,3 +36,14 @@ class event_payload(object):
             return self.__ts
         except AttributeError:
             return None
+
+    def __repr__(self):
+        return json.dumps(
+            {
+                "id": self.id,
+                "event_type": self.event_type,
+                "subject": f"type {type(self.subject).__name__}",
+                "ts": self.ts.isoformat(),
+            },
+            sort_keys=True,
+        )
