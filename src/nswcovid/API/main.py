@@ -31,13 +31,19 @@ class NSWCovid(object):
         return True
 
     def addListener(self, event_listener):
-        _logger.debug("Adding event receiver")
+        if not callable(event_listener):
+            _logger.warning("Unable to add event listener. Not callable.")
+            return None
+        _logger.debug("Adding event receiver %s", event_listener.__name__)
         if not event_listener in self.__event_listeners:
             self.__event_listeners.append(event_listener)
         return event_listener
 
     def removeListener(self, event_listener):
-        _logger.debug("Removing event receiver")
+        if not callable(event_listener):
+            _logger.warning("Unable to remove event listener. Not callable.")
+            return None
+        _logger.debug("Removing event receiver %s", event_listener.__name__)
         if event_listener in self.__event_listeners:
             self.__event_listeners.remove(event_listener)
         else:
