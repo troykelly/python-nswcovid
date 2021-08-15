@@ -17,7 +17,7 @@ __license__ = "mit"
 @pytest.mark.asyncio
 async def test_app():
     def event_receiver(payload):
-        _logger.debug(payload)
+        _logger.debug("Payload: %s", payload)
 
     api = NSWCovid()
     api.addListener(event_receiver)
