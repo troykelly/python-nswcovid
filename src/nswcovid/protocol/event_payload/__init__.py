@@ -38,12 +38,13 @@ class event_payload(object):
             return None
 
     def __repr__(self):
-        return json.dumps(
-            {
-                "id": self.id,
-                "event_type": self.event_type,
-                "subject": f"type {type(self.subject).__name__}",
-                "ts": self.ts.isoformat(),
-            },
-            sort_keys=True,
-        )
+        dump = {}
+        if hasattr(self, "id"):
+            dump["id"] = self.id
+        if hasattr(self, "event_type"):
+            dump["event_type"] = self.event_type
+        if hasattr(self, "subject"):
+            dump["subject"] = f"type {type(self.subject).__name__}"
+        if hasattr(self, "ts") and self.ts is not None:
+            dump["ts"] = self.ts.isoformat()
+        return json.dumps(dump, sort_keys=True)

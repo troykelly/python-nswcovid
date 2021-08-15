@@ -252,24 +252,25 @@ class StatisticHandler(object):
         )
         return statistic
 
-    async def __refresh(self, event_receiver=None):
+    async def __refresh(self):
         await self.__protocol.api_get()
         statistic_ids = self.__statistics.keys()
         tasks = list()
         for id in statistic_ids:
-            task = self.__protocol.loop.create_task(
-                self.__statistics[id].refresh(event_receiver)
-            )
+            task = self.__protocol.loop.create_task(self.__statistics[id].refresh())
             tasks.append(task)
             await task
 
-    async def __track(self, interval, event_receiver=None):
+    async def __track(self, interval):
         while True:
             _logger.debug("track is checking for changes...")
-            await self.__refresh(event_receiver)
+            await self.__refresh()
+            _logger.debug(
+                "track is sleeping for %d seconds...", interval.total_seconds()
+            )
             await asyncio.sleep(interval.total_seconds())
 
-    def track(self, interval=None, event_receiver=None):
+    def track(self, interval=None):
         if not self.__protocol.loop:
             return None
 
@@ -283,9 +284,7 @@ class StatisticHandler(object):
             "Tracking statistics every %d seconds...", interval.total_seconds()
         )
 
-        task = self.__protocol.loop.create_task(
-            self.__track(interval=interval, event_receiver=event_receiver)
-        )
+        task = self.__protocol.loop.create_task(self.__track(interval=interval))
 
         return task
 
@@ -333,86 +332,70 @@ class Statistic(object):
                 self.__resetting = False
 
         self.__attribution = ATTRIBUTION
-        self.__previous_value = None
         self.__value = None
 
-    def __check_changed(self):
-        changed = False
-        if not self.__previous_value == self.__value:
-            changed = True
+    def __broadcast_change(self):
+        payload = event_payload("statistic_updated", self, self.updated)
+        tasks = list()
 
-        self.__previous_value = self.__value
+        async def log_async_exceptions(task):
+            try:
+                return await task
+            except Exception as err:
+                _logger.error(
+                    "Event trigger failed for %s to %s",
+                    self.id,
+                    task.__name__,
+                )
+                _logger.exception(err)
 
-        return changed
+        async def log_exceptions(task):
+            try:
+                return task
+            except Exception as err:
+                _logger.error(
+                    "Event trigger failed for %s to %s",
+                    self.id,
+                    task.__name__,
+                )
+                _logger.exception(err)
 
-    async def refresh(self, event_receiver=None):
+        if type(self.__event_listeners) == list and self.__event_listeners:
+            for event_listener in self.__event_listeners:
+                if callable(event_listener):
+                    event_iscoroutine = inspect.iscoroutinefunction(event_listener)
+                    event_type = "Asynchronous" if event_iscoroutine else "Synchronous"
+                    _logger.debug(
+                        "%s event triggered for %s to %s",
+                        event_type,
+                        self.id,
+                        event_listener.__name__,
+                    )
+                    if event_iscoroutine:
+                        task = self.__handler.loop.create_task(
+                            log_async_exceptions(event_listener(payload))
+                        )
+                        tasks.append(task)
+                    else:
+                        task = self.__handler.loop.create_task(
+                            log_exceptions(event_listener(payload))
+                        )
+                        tasks.append(task)
+                else:
+                    _logger.warning(
+                        "An uncallable event listener exists of type %s",
+                        type(event_listener).__name__,
+                    )
+
+    async def refresh(self):
         if not self.__id:
             return
         await self.__handler.details(self.__id)
-        if self.changed:
-
-            payload = event_payload("statistic_updated", self, self.updated)
-
-            if type(self.__event_listeners) == list and self.__event_listeners:
-                for event_listener in self.__event_listeners:
-                    if callable(event_listener):
-                        _logger.debug(
-                            "Event triggered for %s to %s",
-                            self.id,
-                            event_listener.__name__,
-                        )
-                        try:
-                            if inspect.iscoroutinefunction(event_listener):
-                                await event_listener(payload)
-                            else:
-                                event_listener(payload)
-                        except Exception as err:
-                            _logger.error(
-                                "Event trigger failed for %s to %s",
-                                self.id,
-                                event_listener.__name__,
-                            )
-                            _logger.exception(err)
-                    else:
-                        _logger.warning(
-                            "An uncallable event listener exists of type %s",
-                            type(event_listener),
-                        )
-
-            if event_receiver is not None:
-                if callable(event_receiver):
-                    _logger.debug(
-                        "Event triggered for %s to %s", self.id, event_receiver.__name__
-                    )
-                    try:
-                        if inspect.iscoroutinefunction(event_receiver):
-                            await event_receiver(payload)
-                        else:
-                            event_receiver(payload)
-                    except Exception as err:
-                        _logger.error(
-                            "Event trigger failed for %s to %s",
-                            self.id,
-                            event_receiver.__name__,
-                        )
-                        _logger.exception(err)
-                else:
-                    _logger.warning(
-                        "An uncallable event receiver exists of type %s",
-                        type(event_receiver),
-                    )
 
     @property
     def id(self):
         try:
             return self.__id
-        except AttributeError:
-            return None
-
-    @property
-    def changed(self):
-        try:
-            return self.__changed
         except AttributeError:
             return None
 
@@ -425,9 +408,11 @@ class Statistic(object):
 
     @status.setter
     def status(self, value):
+        if self.__value == value:
+            return
         try:
             self.__value = value
-            self.__changed = self.__check_changed()
+            self.__broadcast_change()
         except AttributeError:
             pass
         _logger.debug("Updating statistic %s: %s", self.__id, self.status)
