@@ -356,7 +356,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"0-9\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"0-9\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_10_19": {
@@ -366,7 +366,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"10-19\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"10-19\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_20_29": {
@@ -376,7 +376,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"20-29\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"20-29\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_30_39": {
@@ -386,7 +386,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"30-39\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"30-39\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_40_49": {
@@ -396,7 +396,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"40-49\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"40-49\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_50_59": {
@@ -406,7 +406,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"50-59\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"50-59\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_60_69": {
@@ -416,7 +416,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"60-69\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"60-69\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_70_79": {
@@ -426,7 +426,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"70-79\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"70-79\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_80_89": {
@@ -436,7 +436,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"80-89\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"80-89\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_female_90_plus": {
@@ -446,7 +446,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Females for data in _.data if \"90+\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"90+\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_0_9": {
@@ -456,7 +456,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"0-9\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"0-9\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_10_19": {
@@ -466,7 +466,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"10-19\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"10-19\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_20_29": {
@@ -476,7 +476,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"20-29\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"20-29\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_30_39": {
@@ -486,7 +486,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"30-39\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"30-39\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_40_49": {
@@ -496,7 +496,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"40-49\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"40-49\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_50_59": {
@@ -506,7 +506,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"50-59\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"50-59\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_60_69": {
@@ -516,7 +516,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"60-69\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"60-69\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_70_79": {
@@ -526,7 +526,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"70-79\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"70-79\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_80_89": {
@@ -536,7 +536,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"80-89\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"80-89\" in data.ageGroup]",
         "measurement": true
     },
     "lives_lost_male_90_plus": {
@@ -546,7 +546,7 @@
         "type": "integer",
         "unit": "death",
         "iconId": "mdi:grave-stone",
-        "json_search": "[data.Males for data in _.data if \"90+\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"90+\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_0_9": {
@@ -556,7 +556,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"0-9\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"0-9\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_10_19": {
@@ -566,7 +566,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"10-19\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"10-19\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_20_29": {
@@ -576,7 +576,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"20-29\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"20-29\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_30_39": {
@@ -586,7 +586,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"30-39\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"30-39\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_40_49": {
@@ -596,7 +596,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"40-49\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"40-49\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_50_59": {
@@ -606,7 +606,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"50-59\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"50-59\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_60_69": {
@@ -616,7 +616,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"60-69\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"60-69\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_70_79": {
@@ -626,7 +626,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"70-79\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"70-79\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_80_89": {
@@ -636,7 +636,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"80-89\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"80-89\" in data.ageGroup]",
         "measurement": true
     },
     "cases_female_90_plus": {
@@ -646,7 +646,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Females for data in _.data if \"90+\" in data.ageGroup]",
+        "json_search": "[data.Females for data in _.data if data.ageGroup is not None and \"90+\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_0_9": {
@@ -656,7 +656,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"0-9\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"0-9\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_10_19": {
@@ -666,7 +666,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"10-19\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"10-19\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_20_29": {
@@ -676,7 +676,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"20-29\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"20-29\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_30_39": {
@@ -686,7 +686,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"30-39\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"30-39\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_40_49": {
@@ -696,7 +696,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"40-49\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"40-49\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_50_59": {
@@ -706,7 +706,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"50-59\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"50-59\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_60_69": {
@@ -716,7 +716,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"60-69\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"60-69\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_70_79": {
@@ -726,7 +726,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"70-79\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"70-79\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_80_89": {
@@ -736,7 +736,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"80-89\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"80-89\" in data.ageGroup]",
         "measurement": true
     },
     "cases_male_90_plus": {
@@ -746,7 +746,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:emoticon-sick",
-        "json_search": "[data.Males for data in _.data if \"90+\" in data.ageGroup]",
+        "json_search": "[data.Males for data in _.data if data.ageGroup is not None and \"90+\" in data.ageGroup]",
         "measurement": true
     },
     "nsw_health_doses_daily": {

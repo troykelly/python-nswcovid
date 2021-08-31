@@ -181,6 +181,13 @@ class StatisticHandler(object):
                 _logger.error(f"jello:  {msg}")
                 return statistic
 
+            if list_dict_data is None:
+                _logger.error(
+                    "Attempt to locate %s in empty document. Confirm source is still valid.",
+                    statistic.id,
+                )
+                return statistic
+
             try:
                 value = pyquery(list_dict_data, statistic.json_search)
                 if type(value) == list:
