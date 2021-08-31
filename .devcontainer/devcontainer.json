@@ -6,7 +6,7 @@
 		"dockerfile": "Dockerfile",
 		"context": "..",
 		"args": {
-			// Update 'VARIANT' to pick a Python version: 3, 3.6, 3.7, 3.8 
+			// Update 'VARIANT' to pick a Python version: 3, 3.6, 3.7, 3.8
 			"VARIANT": "3",
 			// Options
 			"INSTALL_NODE": "true",
@@ -32,7 +32,8 @@
 		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
 		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
 		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+		"terminal.integrated.scrollback": 65535
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
