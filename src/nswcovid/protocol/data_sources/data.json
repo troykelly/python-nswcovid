@@ -17,7 +17,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(1) > span",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(4) > ul > li:nth-child(1) > span",
         "measurement": true
     },
     "interstate_active": {
@@ -27,7 +27,7 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(2) > span",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(4) > ul > li:nth-child(3) > span",
         "measurement": true
     },
     "overseas_active": {
@@ -37,7 +37,37 @@
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
-        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div.active-cases.calloutbox > ul > li:nth-child(3) > span",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(4) > ul > li:nth-child(3) > span",
+        "measurement": true
+    },
+    "hospitalisations_admitted": {
+        "host": null,
+        "path": null,
+        "name": "Hospitalisations Admitted",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:virus",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(7) > ul > li:nth-child(1) > span",
+        "measurement": true
+    },
+    "hospitalisations_icu": {
+        "host": null,
+        "path": null,
+        "name": "Hospitalisations Intensive Care",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:virus",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(7) > ul > li:nth-child(2) > span",
+        "measurement": true
+    },
+    "hospitalisations_ventilation": {
+        "host": null,
+        "path": null,
+        "name": "Hospitalisations Requiring Ventilation",
+        "type": "integer",
+        "unit": "case",
+        "iconId": "mdi:virus",
+        "selector": "#ContentHtml1Zone2 > div:nth-child(1) > div > div:nth-child(7) > ul > li:nth-child(3) > span",
         "measurement": true
     },
     "last_24_hours_known": {
@@ -95,17 +125,6 @@
         "measurement": true,
         "resetting": true
     },
-    "last_24_hours_tests": {
-        "host": null,
-        "path": null,
-        "name": "Last 24 Hours Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(1) > span.number",
-        "measurement": true,
-        "resetting": true
-    },
     "this_week_known": {
         "host": null,
         "path": null,
@@ -154,16 +173,6 @@
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(2) > span.number",
-        "measurement": true
-    },
-    "this_week_tests": {
-        "host": null,
-        "path": null,
-        "name": "This Week Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(2) > span.number",
         "measurement": true
     },
     "last_week_known": {
@@ -216,74 +225,54 @@
         "selector": "#case > ul > li:nth-child(3) > span.number",
         "measurement": true
     },
-    "last_week_tests": {
+    "since_jan2020_known": {
         "host": null,
         "path": null,
-        "name": "Last Week Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(3) > span.number",
-        "measurement": true
-    },
-    "this_year_known": {
-        "host": null,
-        "path": null,
-        "name": "This Year Known Source",
+        "name": "Since Jan 2020 Known Source",
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#known > ul > li:nth-child(4) > span.number",
         "measurement": true
     },
-    "this_year_unknown": {
+    "since_jan2020_unknown": {
         "host": null,
         "path": null,
-        "name": "This Year Unknown Source",
+        "name": "Since Jan 2020 Unknown Source",
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#unknown > ul > li:nth-child(4) > span.number",
         "measurement": true
     },
-    "this_year_interstate": {
+    "since_jan2020_interstate": {
         "host": null,
         "path": null,
-        "name": "This Year Interstate Source",
+        "name": "Since Jan 2020 Interstate Source",
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#interstate > ul > li:nth-child(4) > span.number",
         "measurement": true
     },
-    "this_year_overseas": {
+    "since_jan2020_overseas": {
         "host": null,
         "path": null,
-        "name": "This Year Overseas Source",
+        "name": "Since Jan 2020 Overseas Source",
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#overseas > ul > li:nth-child(4) > span.number",
         "measurement": true
     },
-    "this_year_total": {
+    "since_jan2020_total": {
         "host": null,
         "path": null,
-        "name": "This Year Total",
+        "name": "Since Jan 2020 Total",
         "type": "integer",
         "unit": "case",
         "iconId": "mdi:virus",
         "selector": "#case > ul > li:nth-child(4) > span.number",
-        "measurement": true
-    },
-    "this_year_tests": {
-        "host": null,
-        "path": null,
-        "name": "This Year Tests",
-        "type": "integer",
-        "unit": "test",
-        "iconId": "mdi:test-tube",
-        "selector": "#testing > ul > li:nth-child(4) > span.number",
         "measurement": true
     },
     "last_24_hours_first_dose": {
@@ -293,7 +282,7 @@
         "type": "integer",
         "unit": "dose",
         "iconId": "mdi:needle",
-        "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[2]/td[2]/text()",
+        "xpath": "//*[@id=\"ContentHtml1Zone2\"]/div[3]/div/table/tbody/tr[4]/td[2]/text()",
         "measurement": true,
         "resetting": true
     },
@@ -808,16 +797,6 @@
         "unit": "dose",
         "iconId": "mdi:needle",
         "json_search": "_.allProvidersDosesCumulative",
-        "measurement": true
-    },
-    "recovered": {
-        "host": "nswdac-covid-19-postcode-heatmap.azurewebsites.net",
-        "path": "datafiles/stats.json",
-        "name": "Recovered",
-        "type": "integer",
-        "unit": "case",
-        "iconId": "mdi:emoticon-happy",
-        "json_search": "[data.Recovered for data in _.data]",
         "measurement": true
     },
     "local_cases_with_known_source": {
