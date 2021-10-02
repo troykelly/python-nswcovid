@@ -193,6 +193,7 @@ class StatisticHandler(object):
                 if type(value) == list:
                     value = value[0]
             except Exception as e:
+                _logger.warning("Unable to perform search: %s", statistic.json_search)
                 _logger.exception(e)
                 return statistic
 
